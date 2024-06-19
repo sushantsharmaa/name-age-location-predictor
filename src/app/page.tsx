@@ -1,12 +1,15 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const { push } = useRouter();
   const [inputValue, setInputValue] = useState<string>();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
+    push(`/pediction/${inputValue}`);
   };
 
   return (
@@ -17,6 +20,7 @@ export default function Home() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          className="text-black"
           placeholder="Enter your name"
           onChange={(e) => setInputValue(e.target.value)}
         />
